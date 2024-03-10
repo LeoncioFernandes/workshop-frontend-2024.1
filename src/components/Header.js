@@ -15,11 +15,13 @@ export default function Header() {
     let campoPesquisa = document.getElementById("campoPesquisa")
     let buttonPesquisa = document.getElementById("buttonPesquisa")
     let posPesquisa = document.getElementById("posPesquisa")
+
     if (!visible) {
       campoPesquisa.focus()
       campoPesquisa.className = " w-72 h-9 pl-10 placeholder-neutral-400 border-white border bg-[#141414] text-left font-light text-sm text-white hover:transition-all duration-300 ease-in-out "
       buttonPesquisa.disabled = true
       posPesquisa.className = " mr-7 "
+      
     }else{
       if (campoPesquisa.value != "") {
         setVisible(!visible)
@@ -28,6 +30,25 @@ export default function Header() {
         buttonPesquisa.disabled = false
         posPesquisa.className = " mr-12 "
       }
+    }
+  }
+
+  function limparCampo(){
+    document.getElementById("campoPesquisa").value = ""
+    document.getElementById("campoPesquisa").focus()
+    document.getElementById("buttonLimpar").className = " hidden "
+    setSearch("")
+  }
+
+  function showLimparButton(){
+    let campoPesquisa = document.getElementById("campoPesquisa")
+    let buttonLimpar = document.getElementById("buttonLimpar")
+
+    if (campoPesquisa.value != "") {
+      buttonLimpar.className = " fixed mt-1 ml-64 visible "
+    }
+    else{
+      buttonLimpar.className = " hidden "
     }
   }
   
@@ -57,7 +78,13 @@ export default function Header() {
             <button id="buttonPesquisa" onClick={changeVisibility} className="flex items-center fixed mt-1 ml-1">
               <svg class="h-7 w-7 text-white"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="10" cy="10" r="7" />  <line x1="21" y1="21" x2="15" y2="15" /></svg>
             </button>
-            <input id="campoPesquisa" onBlur={changeVisibility} placeholder="Títulos, gente e gêneros" type="text" className=" w-0 " onChange={(e) => setSearch(e.target.value)}/>
+            <button id="buttonLimpar" onClick={limparCampo} className=" hidden ">
+              <svg class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            </button>
+            <input onKeyUp={showLimparButton} id="campoPesquisa" onBlur={changeVisibility} placeholder="Títulos, gente e gêneros" type="text" className=" w-0 " onChange={(e) => setSearch(e.target.value)}/>
+            
           </div>
           
           <div className="flex items-center gap-x-5">
