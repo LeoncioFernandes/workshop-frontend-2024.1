@@ -18,7 +18,7 @@ export default function Header() {
 
     if (!visible) {
       campoPesquisa.focus()
-      campoPesquisa.className = " w-72 h-9 pl-10 placeholder-neutral-400 border-white border bg-[#141414] text-left font-light text-sm text-white hover:transition-all duration-300 ease-in-out "
+      campoPesquisa.className = " w-72 h-9 px-10 placeholder-neutral-400 border-white border bg-[#141414] text-left font-light text-sm text-white hover:transition-all duration-300 ease-in-out "
       buttonPesquisa.disabled = true
       posPesquisa.className = " mr-7 "
       
